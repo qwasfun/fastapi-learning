@@ -1,3 +1,4 @@
+import os
 from collections.abc import AsyncGenerator
 
 import uuid
@@ -9,6 +10,8 @@ from sqlalchemy.orm import DeclarativeBase, relationship
 from datetime import datetime
 
 DATABASE_URL = "sqlite+aiosqlite:///./db.sqlite"
+if "VERCEL_ENV" in os.environ:
+    DATABASE_URL = "sqlite+aiosqlite:////tmp/db.sqlite"
 
 
 # DATABASE_URL = "sqlite+aiosqlite:///./test.db"
